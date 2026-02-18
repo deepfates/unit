@@ -1,0 +1,30 @@
+{
+  "name": "tool call parser",
+  "inputs": {
+    "response": {
+      "type": "string",
+      "metadata": {
+        "examples": []
+      }
+    }
+  },
+  "outputs": {
+    "text": {
+      "type": "string"
+    },
+    "tool_calls": {
+      "type": "{id:string,name:string,arguments:object}[]"
+    },
+    "has_tool_calls": {
+      "type": "boolean"
+    }
+  },
+  "metadata": {
+    "icon": "tool",
+    "description": "parse an LLM response JSON string, extracting text content and any tool calls",
+    "tags": ["f", "ai"]
+  },
+  "id": "6b2d3ded-22b3-4ab7-8c75-755218da5fae",
+  "base": true,
+  "type": "`U`"
+}

@@ -1,0 +1,44 @@
+{
+  "name": "llm complete",
+  "inputs": {
+    "prompt": {
+      "type": "string",
+      "metadata": {
+        "examples": ["'hello'"]
+      }
+    },
+    "url": {
+      "type": "string",
+      "metadata": {
+        "examples": ["'http://127.0.0.1:1234/v1/chat/completions'"]
+      }
+    },
+    "model": {
+      "type": "string",
+      "metadata": {
+        "examples": ["'qwen/qwen3-vl-4b'"]
+      }
+    },
+    "key": {
+      "type": "string",
+      "optional": true,
+      "defaultIgnored": true,
+      "metadata": {
+        "examples": ["'sk-...'"]
+      }
+    }
+  },
+  "outputs": {
+    "response": {
+      "type": "string"
+    }
+  },
+  "metadata": {
+    "icon": "zap",
+    "description": "send a prompt to an OpenAI-compatible LLM endpoint and return the completion",
+    "tags": ["f", "ai"]
+  },
+  "id": "69303c3e-acef-45b3-bf99-06099d341b6b",
+  "base": true,
+  "type": "`U`"
+}

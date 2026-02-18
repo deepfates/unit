@@ -1,0 +1,30 @@
+{
+  "name": "chat message",
+  "inputs": {
+    "role": {
+      "type": "string",
+      "metadata": {
+        "examples": ["'user'", "'assistant'", "'system'"]
+      }
+    },
+    "content": {
+      "type": "string",
+      "metadata": {
+        "examples": ["'hello'"]
+      }
+    }
+  },
+  "outputs": {
+    "message": {
+      "type": "{role:string,content:string}"
+    }
+  },
+  "metadata": {
+    "icon": "message-square",
+    "description": "create a chat message object from role and content",
+    "tags": ["f", "ai"]
+  },
+  "id": "cc827c9a-fa28-4327-96f8-f976e37020ea",
+  "base": true,
+  "type": "`U`"
+}

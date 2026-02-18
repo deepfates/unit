@@ -1,0 +1,107 @@
+{
+  "name": "chat loop",
+  "units": {
+    "history": {
+      "id": "8a2b756a-25e4-11eb-860d-1f34c850b992",
+      "input": {
+        "init": {
+          "constant": true,
+          "data": "[]"
+        }
+      },
+      "metadata": {
+        "position": { "x": -400, "y": 0 }
+      }
+    },
+    "usermsg": {
+      "id": "cc827c9a-fa28-4327-96f8-f976e37020ea",
+      "input": {
+        "role": {
+          "constant": true,
+          "data": "'user'"
+        }
+      },
+      "metadata": {
+        "position": { "x": -200, "y": 100 }
+      }
+    },
+    "appenduser": {
+      "id": "fa7721eb-1dd6-482e-8c7a-6da35b5f88bc",
+      "metadata": {
+        "position": { "x": 0, "y": 0 }
+      }
+    },
+    "llmchat": {
+      "id": "e15dcf56-b38a-4f02-959d-57ae170fc232",
+      "metadata": {
+        "position": { "x": 200, "y": 0 }
+      }
+    },
+    "appendasst": {
+      "id": "fa7721eb-1dd6-482e-8c7a-6da35b5f88bc",
+      "metadata": {
+        "position": { "x": 400, "y": 0 }
+      }
+    }
+  },
+  "merges": {
+    "0": {
+      "history": { "output": { "current": true } },
+      "appenduser": { "input": { "a": true } }
+    },
+    "1": {
+      "usermsg": { "output": { "message": true } },
+      "appenduser": { "input": { "b": true } }
+    },
+    "2": {
+      "appenduser": { "output": { "a": true } },
+      "llmchat": { "input": { "messages": true } },
+      "appendasst": { "input": { "a": true } }
+    },
+    "3": {
+      "llmchat": { "output": { "message": true } },
+      "appendasst": { "input": { "b": true } }
+    },
+    "4": {
+      "appendasst": { "output": { "a": true } },
+      "history": { "input": { "next": true } }
+    }
+  },
+  "inputs": {
+    "prompt": {
+      "plug": { "0": { "unitId": "usermsg", "pinId": "content" } },
+      "type": "string"
+    },
+    "url": {
+      "plug": { "0": { "unitId": "llmchat", "pinId": "url" } },
+      "type": "string"
+    },
+    "model": {
+      "plug": { "0": { "unitId": "llmchat", "pinId": "model" } },
+      "type": "string"
+    },
+    "key": {
+      "plug": { "0": { "unitId": "llmchat", "pinId": "key" } },
+      "type": "string",
+      "optional": true,
+      "defaultIgnored": true
+    }
+  },
+  "outputs": {
+    "response": {
+      "plug": { "0": { "unitId": "llmchat", "pinId": "response" } },
+      "type": "string"
+    },
+    "messages": {
+      "plug": { "0": { "mergeId": "4" } },
+      "type": "{role:string,content:string}[]"
+    }
+  },
+  "metadata": {
+    "icon": "message-square",
+    "description": "multi-turn chat loop that accumulates message history",
+    "tags": ["core", "ai"]
+  },
+  "id": "22161086-6e09-42d3-9748-47adae8f3fc4",
+  "type": "`U`&`G`"
+}

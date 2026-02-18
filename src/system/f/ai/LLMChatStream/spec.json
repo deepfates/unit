@@ -1,0 +1,47 @@
+{
+  "name": "llm chat stream",
+  "inputs": {
+    "messages": {
+      "type": "{role:string,content:string}[]",
+      "metadata": {
+        "examples": ["[{role:'user',content:'hello'}]"]
+      }
+    },
+    "url": {
+      "type": "string",
+      "metadata": {
+        "examples": ["'http://127.0.0.1:1234/v1/chat/completions'"]
+      }
+    },
+    "model": {
+      "type": "string",
+      "metadata": {
+        "examples": ["'qwen/qwen3-vl-4b'"]
+      }
+    },
+    "token": {
+      "type": "string",
+      "optional": true,
+      "defaultIgnored": true,
+      "metadata": {
+        "examples": ["'sk-...'"]
+      }
+    }
+  },
+  "outputs": {
+    "chunk": {
+      "type": "string"
+    },
+    "done": {
+      "type": "boolean"
+    }
+  },
+  "metadata": {
+    "icon": "zap",
+    "description": "stream a messages array to an OpenAI-compatible chat endpoint",
+    "tags": ["f", "ai"]
+  },
+  "id": "17181f6a-4835-4240-a11b-25d2c4e51130",
+  "base": true,
+  "type": "`U`"
+}

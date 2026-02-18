@@ -1,6 +1,7 @@
 import './AppendIf'
 import './ArrayBuilder'
 import './ArrayMultiply'
+import './ChatLoop'
 import './CompareLTE'
 import './Empty'
 import './FilterValueEquals'

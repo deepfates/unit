@@ -1,0 +1,100 @@
+{
+  "name": "chat ui",
+  "type": "`U`&`C`&`G`",
+  "render": true,
+  "units": {
+    "container": {
+      "id": "66698a97-15c5-4602-9925-11a1aeb03710",
+      "input": {
+        "style": {
+          "constant": true,
+          "data": "{display:'flex',flexDirection:'column',width:'100%',height:'100%',fontFamily:'system-ui, sans-serif',color:'#e0e0e0',background:'#1a1a2e'}"
+        }
+      }
+    },
+    "display": {
+      "id": "3ea3e49b-d9dc-47dc-b3d5-3a89937b6002",
+      "input": {
+        "style": {
+          "constant": true,
+          "data": "{flex:'1',overflow:'auto'}"
+        }
+      }
+    },
+    "input": {
+      "id": "b39a4467-4de3-40cf-8f13-66c417f6d7a5",
+      "input": {
+        "style": {
+          "constant": true,
+          "data": "{borderTop:'1px solid #333',padding:'12px',fontSize:'14px',background:'#16213e',color:'#e0e0e0',outline:'none',border:'none',width:'100%',boxSizing:'border-box'}"
+        }
+      }
+    },
+    "chatloop": {
+      "id": "22161086-6e09-42d3-9748-47adae8f3fc4"
+    }
+  },
+  "merges": {
+    "0": {
+      "input": { "output": { "value": true } },
+      "chatloop": { "input": { "prompt": true } }
+    },
+    "1": {
+      "chatloop": { "output": { "messages": true } },
+      "display": { "input": { "messages": true } }
+    }
+  },
+  "inputs": {
+    "url": {
+      "plug": { "0": { "unitId": "chatloop", "pinId": "url" } },
+      "type": "string"
+    },
+    "model": {
+      "plug": { "0": { "unitId": "chatloop", "pinId": "model" } },
+      "type": "string"
+    },
+    "key": {
+      "plug": { "0": { "unitId": "chatloop", "pinId": "key" } },
+      "type": "string",
+      "optional": true,
+      "defaultIgnored": true
+    },
+    "style": {
+      "plug": { "0": { "unitId": "container", "pinId": "style" } },
+      "type": "object",
+      "optional": true
+    }
+  },
+  "outputs": {
+    "messages": {
+      "plug": { "0": { "mergeId": "1" } },
+      "type": "{role:string,content:string}[]"
+    }
+  },
+  "component": {
+    "subComponents": {
+      "container": {
+        "children": ["display", "input"],
+        "childSlot": {
+          "display": "default",
+          "input": "default"
+        }
+      },
+      "display": {
+        "children": []
+      },
+      "input": {
+        "children": []
+      }
+    },
+    "children": ["container"],
+    "defaultWidth": 360,
+    "defaultHeight": 640
+  },
+  "metadata": {
+    "icon": "message-square",
+    "description": "chat interface with message bubbles and enter-to-send input",
+    "tags": ["core", "ai"]
+  },
+  "id": "0212f4ee-fd62-4bcd-bad1-3c5f863c5f06"
+}

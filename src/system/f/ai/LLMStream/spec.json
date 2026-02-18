@@ -1,0 +1,55 @@
+{
+  "name": "llm stream",
+  "inputs": {
+    "messages": {
+      "type": "{role:string,content:string}[]",
+      "metadata": {
+        "examples": ["[{role:'user',content:'hello'}]"]
+      }
+    },
+    "url": {
+      "type": "string",
+      "metadata": {
+        "examples": ["'http://127.0.0.1:1234/v1/chat/completions'"]
+      }
+    },
+    "model": {
+      "type": "string",
+      "metadata": {
+        "examples": ["'qwen/qwen3-vl-4b'"]
+      }
+    },
+    "key": {
+      "type": "string",
+      "optional": true,
+      "defaultIgnored": true,
+      "metadata": {
+        "examples": ["'sk-...'"]
+      }
+    },
+    "done": {
+      "type": "any",
+      "defaultIgnored": true
+    }
+  },
+  "outputs": {
+    "text": {
+      "type": "string"
+    },
+    "chunk": {
+      "type": "string"
+    },
+    "done": {
+      "type": "any",
+      "defaultIgnored": true
+    }
+  },
+  "metadata": {
+    "icon": "zap",
+    "description": "stream chat completions from an OpenAI-compatible endpoint, emitting chunks as they arrive",
+    "tags": ["f", "ai"]
+  },
+  "id": "0c884e77-9eed-4b66-8167-e0cd24b2f3ca",
+  "base": true,
+  "type": "`U`"
+}

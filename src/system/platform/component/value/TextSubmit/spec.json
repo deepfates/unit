@@ -1,0 +1,38 @@
+{
+  "name": "text submit",
+  "inputs": {
+    "value": {
+      "type": "string",
+      "optional": true
+    },
+    "style": {
+      "type": "object",
+      "optional": true
+    },
+    "attr": {
+      "type": "object",
+      "optional": true,
+      "defaultIgnored": true
+    }
+  },
+  "outputs": {
+    "value": {
+      "type": "string",
+      "optional": true,
+      "defaultIgnored": true
+    }
+  },
+  "metadata": {
+    "icon": "corner-down-left",
+    "description": "text input that emits value on Enter and clears",
+    "tags": ["platform", "component", "value"]
+  },
+  "id": "b39a4467-4de3-40cf-8f13-66c417f6d7a5",
+  "base": true,
+  "component": {
+    "defaultWidth": 180,
+    "defaultHeight": 45
+  },
+  "type": "`U`&`C`&`V`&`J`",
+  "render": true
+}

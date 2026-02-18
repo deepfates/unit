@@ -1,0 +1,21 @@
+{
+  "name": "unit printer prompt",
+  "inputs": {
+    "any": {
+      "type": "any"
+    }
+  },
+  "outputs": {
+    "template": {
+      "type": "string"
+    }
+  },
+  "metadata": {
+    "icon": "file-text",
+    "description": "output the system prompt template for unit spec generation",
+    "tags": ["f", "ai"]
+  },
+  "id": "35ab2228-d59f-4247-ae81-f44539b77790",
+  "base": true,
+  "type": "`U`"
+}

@@ -1,0 +1,40 @@
+{
+  "name": "markdown",
+  "type": "`U`&`C`&`V`&`J`",
+  "inputs": {
+    "style": {
+      "type": "object",
+      "optional": true,
+      "metadata": {
+        "examples": ["{}"]
+      }
+    },
+    "attr": {
+      "type": "object",
+      "optional": true,
+      "defaultIgnored": true,
+      "metadata": {
+        "examples": []
+      }
+    },
+    "text": {
+      "type": "string",
+      "metadata": {
+        "examples": ["'# Hello\\n\\nThis is **markdown**.'"]
+      }
+    }
+  },
+  "outputs": {},
+  "metadata": {
+    "icon": "file-text",
+    "description": "render markdown text as formatted HTML",
+    "tags": ["platform", "component"]
+  },
+  "id": "f75b9621-5595-4262-86c9-f6db6782a279",
+  "base": true,
+  "component": {
+    "defaultWidth": 240,
+    "defaultHeight": 240
+  },
+  "render": true
+}

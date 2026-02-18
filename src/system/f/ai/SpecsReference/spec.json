@@ -1,0 +1,24 @@
+{
+  "name": "specs reference",
+  "inputs": {
+    "specs": {
+      "type": "object",
+      "metadata": {
+        "examples": ["{}"]
+      }
+    }
+  },
+  "outputs": {
+    "reference": {
+      "type": "string"
+    }
+  },
+  "metadata": {
+    "icon": "book",
+    "description": "format all system specs as a condensed text reference for LLM consumption",
+    "tags": ["f", "ai"]
+  },
+  "id": "5112d539-f2c2-47da-a0f2-1a0132dd45d4",
+  "base": true,
+  "type": "`U`"
+}

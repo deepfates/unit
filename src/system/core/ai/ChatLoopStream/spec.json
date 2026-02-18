@@ -1,0 +1,114 @@
+{
+  "name": "chat loop stream",
+  "units": {
+    "history": {
+      "id": "8a2b756a-25e4-11eb-860d-1f34c850b992",
+      "input": {
+        "init": {
+          "constant": true,
+          "data": "[]"
+        }
+      }
+    },
+    "usermsg": {
+      "id": "cc827c9a-fa28-4327-96f8-f976e37020ea",
+      "input": {
+        "role": {
+          "constant": true,
+          "data": "'user'"
+        }
+      }
+    },
+    "appenduser": {
+      "id": "fa7721eb-1dd6-482e-8c7a-6da35b5f88bc"
+    },
+    "llmstream": {
+      "id": "0c884e77-9eed-4b66-8167-e0cd24b2f3ca",
+      "output": {
+        "done": {
+          "ignored": true
+        }
+      }
+    },
+    "asstmsg": {
+      "id": "cc827c9a-fa28-4327-96f8-f976e37020ea",
+      "input": {
+        "role": {
+          "constant": true,
+          "data": "'assistant'"
+        }
+      }
+    },
+    "appendasst": {
+      "id": "fa7721eb-1dd6-482e-8c7a-6da35b5f88bc"
+    }
+  },
+  "merges": {
+    "0": {
+      "history": { "output": { "current": true } },
+      "appenduser": { "input": { "a": true } }
+    },
+    "1": {
+      "usermsg": { "output": { "message": true } },
+      "appenduser": { "input": { "b": true } }
+    },
+    "2": {
+      "appenduser": { "output": { "a": true } },
+      "llmstream": { "input": { "messages": true } },
+      "appendasst": { "input": { "a": true } }
+    },
+    "3": {
+      "llmstream": { "output": { "text": true } },
+      "asstmsg": { "input": { "content": true } }
+    },
+    "4": {
+      "asstmsg": { "output": { "message": true } },
+      "appendasst": { "input": { "b": true } }
+    },
+    "5": {
+      "appendasst": { "output": { "a": true } },
+      "history": { "input": { "next": true } }
+    }
+  },
+  "inputs": {
+    "prompt": {
+      "plug": { "0": { "unitId": "usermsg", "pinId": "content" } },
+      "type": "string"
+    },
+    "url": {
+      "plug": { "0": { "unitId": "llmstream", "pinId": "url" } },
+      "type": "string"
+    },
+    "model": {
+      "plug": { "0": { "unitId": "llmstream", "pinId": "model" } },
+      "type": "string"
+    },
+    "key": {
+      "plug": { "0": { "unitId": "llmstream", "pinId": "key" } },
+      "type": "string",
+      "optional": true,
+      "defaultIgnored": true
+    }
+  },
+  "outputs": {
+    "response": {
+      "plug": { "0": { "mergeId": "3" } },
+      "type": "string"
+    },
+    "chunk": {
+      "plug": { "0": { "unitId": "llmstream", "pinId": "chunk" } },
+      "type": "string"
+    },
+    "messages": {
+      "plug": { "0": { "mergeId": "5" } },
+      "type": "{role:string,content:string}[]"
+    }
+  },
+  "metadata": {
+    "icon": "message-square",
+    "description": "multi-turn chat loop with streaming, emitting chunks as tokens arrive",
+    "tags": ["core", "ai"]
+  },
+  "id": "ec2d7027-0988-44af-aa16-05374d6890ce",
+  "type": "`U`&`G`"
+}

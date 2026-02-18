@@ -1,0 +1,24 @@
+{
+  "name": "messages to markdown",
+  "inputs": {
+    "messages": {
+      "type": "{role:string,content:string}[]",
+      "metadata": {
+        "examples": ["[{role:'user',content:'hello'},{role:'assistant',content:'hi there'}]"]
+      }
+    }
+  },
+  "outputs": {
+    "text": {
+      "type": "string"
+    }
+  },
+  "metadata": {
+    "icon": "file-text",
+    "description": "format a chat messages array as a markdown conversation",
+    "tags": ["f", "ai"]
+  },
+  "id": "0d862565-8576-41a0-8c5d-4b3ae244b61b",
+  "base": true,
+  "type": "`U`"
+}

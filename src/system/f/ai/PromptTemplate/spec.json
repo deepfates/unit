@@ -1,0 +1,30 @@
+{
+  "name": "prompt template",
+  "inputs": {
+    "template": {
+      "type": "string",
+      "metadata": {
+        "examples": ["'Hello {name}, you are a {role}.'"]
+      }
+    },
+    "vars": {
+      "type": "object",
+      "metadata": {
+        "examples": ["{name:'world',role:'assistant'}"]
+      }
+    }
+  },
+  "outputs": {
+    "text": {
+      "type": "string"
+    }
+  },
+  "metadata": {
+    "icon": "type",
+    "description": "interpolate {variables} in a template string",
+    "tags": ["f", "ai"]
+  },
+  "id": "1cf9236f-b862-493d-903d-58710c6a9420",
+  "base": true,
+  "type": "`U`"
+}

@@ -1,0 +1,40 @@
+{
+  "name": "chat messages",
+  "type": "`U`&`C`&`V`&`J`",
+  "inputs": {
+    "style": {
+      "type": "object",
+      "optional": true,
+      "metadata": {
+        "examples": ["{}"]
+      }
+    },
+    "attr": {
+      "type": "object",
+      "optional": true,
+      "defaultIgnored": true,
+      "metadata": {
+        "examples": []
+      }
+    },
+    "messages": {
+      "type": "{role:string,content:string}[]",
+      "metadata": {
+        "examples": ["[{role:'user',content:'hello'},{role:'assistant',content:'hi there'}]"]
+      }
+    }
+  },
+  "outputs": {},
+  "metadata": {
+    "icon": "message-square",
+    "description": "render chat messages as aligned bubbles",
+    "tags": ["platform", "component"]
+  },
+  "id": "3ea3e49b-d9dc-47dc-b3d5-3a89937b6002",
+  "base": true,
+  "component": {
+    "defaultWidth": 360,
+    "defaultHeight": 480
+  },
+  "render": true
+}

@@ -1,0 +1,177 @@
+{
+  "name": "unit printer",
+  "type": "`U`&`G`",
+  "id": "036190b8-3228-4e8d-8de8-1ff97a5a5278",
+  "units": {
+    "specs": {
+      "id": "b5ea15f4-9bbd-11eb-b623-37aff4a9ce60"
+    },
+    "ref": {
+      "id": "5112d539-f2c2-47da-a0f2-1a0132dd45d4"
+    },
+    "promptunit": {
+      "id": "35ab2228-d59f-4247-ae81-f44539b77790"
+    },
+    "setvars": {
+      "id": "c4784b05-1f50-44ad-b812-545b3ed77614",
+      "input": {
+        "obj": {
+          "constant": true,
+          "data": "{}"
+        },
+        "key": {
+          "constant": true,
+          "data": "'reference'"
+        }
+      }
+    },
+    "tmpl": {
+      "id": "1cf9236f-b862-493d-903d-58710c6a9420"
+    },
+    "sysmsg": {
+      "id": "cc827c9a-fa28-4327-96f8-f976e37020ea",
+      "input": {
+        "role": {
+          "constant": true,
+          "data": "'system'"
+        }
+      }
+    },
+    "usermsg": {
+      "id": "cc827c9a-fa28-4327-96f8-f976e37020ea",
+      "input": {
+        "role": {
+          "constant": true,
+          "data": "'user'"
+        }
+      }
+    },
+    "pair": {
+      "id": "a7d5c2f3-6134-4248-b9bc-33271c280267"
+    },
+    "llm": {
+      "id": "e15dcf56-b38a-4f02-959d-57ae170fc232"
+    },
+    "parse": {
+      "id": "563e92be-ad5e-4a61-a718-9249c3eac51d"
+    },
+    "setspec": {
+      "id": "c4784b05-1f50-44ad-b812-545b3ed77614",
+      "input": {
+        "obj": {
+          "constant": true,
+          "data": "{}"
+        },
+        "key": {
+          "constant": true,
+          "data": "'spec'"
+        }
+      }
+    },
+    "setspecs": {
+      "id": "c4784b05-1f50-44ad-b812-545b3ed77614",
+      "input": {
+        "key": {
+          "constant": true,
+          "data": "'specs'"
+        },
+        "value": {
+          "constant": true,
+          "data": "{}"
+        }
+      }
+    },
+    "frombundle": {
+      "id": "de2d42e2-4fca-4a3f-8783-3585c546e88b"
+    }
+  },
+  "merges": {
+    "0": {
+      "specs": { "output": { "specs": true } },
+      "ref": { "input": { "specs": true } }
+    },
+    "1": {
+      "ref": { "output": { "reference": true } },
+      "setvars": { "input": { "value": true } }
+    },
+    "2": {
+      "setvars": { "output": { "obj": true } },
+      "tmpl": { "input": { "vars": true } }
+    },
+    "3": {
+      "promptunit": { "output": { "template": true } },
+      "tmpl": { "input": { "template": true } }
+    },
+    "4": {
+      "tmpl": { "output": { "text": true } },
+      "sysmsg": { "input": { "content": true } }
+    },
+    "5": {
+      "sysmsg": { "output": { "message": true } },
+      "pair": { "input": { "0": true } }
+    },
+    "6": {
+      "usermsg": { "output": { "message": true } },
+      "pair": { "input": { "1": true } }
+    },
+    "7": {
+      "pair": { "output": { "pair": true } },
+      "llm": { "input": { "messages": true } }
+    },
+    "8": {
+      "llm": { "output": { "response": true } },
+      "parse": { "input": { "string": true } }
+    },
+    "9": {
+      "parse": { "output": { "json": true } },
+      "setspec": { "input": { "value": true } }
+    },
+    "10": {
+      "setspec": { "output": { "obj": true } },
+      "setspecs": { "input": { "obj": true } }
+    },
+    "11": {
+      "setspecs": { "output": { "obj": true } },
+      "frombundle": { "input": { "bundle": true } }
+    },
+    "12": {
+      "usermsg": { "input": { "content": true } },
+      "specs": { "input": { "any": true } },
+      "promptunit": { "input": { "any": true } }
+    }
+  },
+  "inputs": {
+    "intent": {
+      "plug": { "0": { "mergeId": "12" } },
+      "type": "string"
+    },
+    "url": {
+      "plug": { "0": { "unitId": "llm", "pinId": "url" } },
+      "type": "string"
+    },
+    "model": {
+      "plug": { "0": { "unitId": "llm", "pinId": "model" } },
+      "type": "string"
+    },
+    "key": {
+      "plug": { "0": { "unitId": "llm", "pinId": "key" } },
+      "type": "string",
+      "optional": true
+    }
+  },
+  "outputs": {
+    "spec": {
+      "plug": { "0": { "mergeId": "9" } },
+      "type": "object"
+    },
+    "graph": {
+      "plug": { "0": { "unitId": "frombundle", "pinId": "graph" } },
+      "type": "`G`"
+    }
+  },
+  "metadata": {
+    "icon": "printer",
+    "description": "generate a unit graph spec from natural language intent using an LLM",
+    "tags": ["core", "ai"]
+  }
+}
