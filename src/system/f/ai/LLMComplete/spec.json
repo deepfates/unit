@@ -19,7 +19,7 @@
         "examples": ["'qwen/qwen3-vl-4b'"]
       }
     },
-    "key": {
+    "api_key": {
       "type": "string",
       "optional": true,
       "defaultIgnored": true,

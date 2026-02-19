@@ -8,7 +8,7 @@ export interface I {
   prompt: string
   url: string
   model: string
-  key: string
+  api_key: string
 }
 
 export interface O {
@@ -19,7 +19,7 @@ export default class LLMComplete extends Functional<I, O> {
   constructor(system: System) {
     super(
       {
-        i: ['prompt', 'url', 'model', 'key'],
+        i: ['prompt', 'url', 'model', 'api_key'],
         o: ['response'],
       },
       {},
@@ -29,7 +29,7 @@ export default class LLMComplete extends Functional<I, O> {
   }
 
   async f(
-    { prompt, url, model, key }: I,
+    { prompt, url, model, api_key }: I,
     done: Done<O>,
     fail: Fail
   ): Promise<void> {
@@ -52,7 +52,7 @@ export default class LLMComplete extends Functional<I, O> {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            ...(key ? { Authorization: `Bearer ${key}` } : {}),
+            ...(api_key ? { Authorization: `Bearer ${api_key}` } : {}),
           },
           body,
         },

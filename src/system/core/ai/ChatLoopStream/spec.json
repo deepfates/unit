@@ -83,8 +83,8 @@
       "plug": { "0": { "unitId": "llmstream", "pinId": "model" } },
       "type": "string"
     },
-    "key": {
-      "plug": { "0": { "unitId": "llmstream", "pinId": "key" } },
+    "api_key": {
+      "plug": { "0": { "unitId": "llmstream", "pinId": "api_key" } },
       "type": "string",
       "optional": true,
       "defaultIgnored": true

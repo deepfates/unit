@@ -1,5 +1,7 @@
 import './LLMChat'
 import './LLMChatStream'
+import './LLMComplete'
+import './LLMStream'
 import './PromptTemplate'
 import './SpecsReference'
 import './ToolCallParser'

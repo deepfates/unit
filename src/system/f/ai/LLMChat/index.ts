@@ -13,7 +13,7 @@ export interface I {
   messages: Message[]
   url: string
   model: string
-  key: string
+  api_key: string
 }
 
 export interface O {
@@ -25,7 +25,7 @@ export default class LLMChat extends Functional<I, O> {
   constructor(system: System) {
     super(
       {
-        i: ['messages', 'url', 'model', 'key'],
+        i: ['messages', 'url', 'model', 'api_key'],
         o: ['response', 'message'],
       },
       {},
@@ -35,7 +35,7 @@ export default class LLMChat extends Functional<I, O> {
   }
 
   async f(
-    { messages, url, model }: I,
+    { messages, url, model, api_key }: I,
     done: Done<O>,
     fail: Fail
   ): Promise<void> {
@@ -46,8 +46,6 @@ export default class LLMChat extends Functional<I, O> {
       cache: { interceptors },
     } = this.__system
 
-    const key = this._input.key?.peak()
-
     const body = JSON.stringify({ model, messages })
 
     try {
@@ -57,7 +55,7 @@ export default class LLMChat extends Functional<I, O> {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            ...(key ? { Authorization: `Bearer ${key}` } : {}),
+            ...(api_key ? { Authorization: `Bearer ${api_key}` } : {}),
           },
           body,
         },

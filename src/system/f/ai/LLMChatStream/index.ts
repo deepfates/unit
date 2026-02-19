@@ -13,7 +13,7 @@ export interface I {
   messages: Message[]
   url: string
   model: string
-  token: string
+  api_key: string
 }
 
 export interface O {
@@ -27,7 +27,7 @@ export default class LLMChatStream extends Holder<I, O> {
   constructor(system: System) {
     super(
       {
-        fi: ['messages', 'url', 'model', 'token'],
+        fi: ['messages', 'url', 'model', 'api_key'],
         fo: [],
         i: [],
         o: ['chunk', 'done'],
@@ -39,7 +39,7 @@ export default class LLMChatStream extends Holder<I, O> {
   }
 
   async f(
-    { messages, url, model, token }: I,
+    { messages, url, model, api_key }: I,
     done: Done<O>,
     fail: Fail
   ): Promise<void> {
@@ -65,7 +65,7 @@ export default class LLMChatStream extends Holder<I, O> {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            ...(token ? { Authorization: `Bearer ${token}` } : {}),
+            ...(api_key ? { Authorization: `Bearer ${api_key}` } : {}),
           },
           body,
         },
@@ -96,6 +96,31 @@ export default class LLMChatStream extends Holder<I, O> {
     let pending = ''
 
     try {
+      const processLine = (rawLine: string): void => {
+        const line = rawLine.trim()
+
+        if (!line.startsWith('data:')) {
+          return
+        }
+
+        const data = line.slice(5).trim()
+
+        if (!data || data === '[DONE]') {
+          return
+        }
+
+        try {
+          const json = JSON.parse(data)
+          const content = json.choices?.[0]?.delta?.content
+
+          if (content) {
+            this._output.chunk.push(content)
+          }
+        } catch {
+          // ignore malformed fragments
+        }
+      }
+
       while (true) {
         const { done: streamDone, value } = await reader.read()
 
@@ -109,29 +134,12 @@ export default class LLMChatStream extends Holder<I, O> {
         pending = lines.pop() ?? ''
 
         for (const rawLine of lines) {
-          const line = rawLine.trim()
-
-          if (!line.startsWith('data:')) {
-            continue
-          }
-
-          const data = line.slice(5).trim()
-
-          if (!data || data === '[DONE]') {
-            continue
-          }
-
-          try {
-            const json = JSON.parse(data)
-            const content = json.choices?.[0]?.delta?.content
-
-            if (content) {
-              this._output.chunk.push(content)
-            }
-          } catch {
-            // ignore malformed fragments
-          }
+          processLine(rawLine)
         }
+      }
+
+      if (pending) {
+        processLine(pending)
       }
     } catch (err) {
       if (this._reader) {

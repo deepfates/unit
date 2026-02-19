@@ -11,4 +11,4 @@ const chatLoop = new ChatLoop(system)
 
 chatLoop.play()
 
-assert.equal(chatLoop.getInputNames().includes('key'), true)
+assert.equal(chatLoop.getInputNames().includes('api_key'), true)

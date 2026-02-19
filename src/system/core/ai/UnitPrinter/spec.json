@@ -153,8 +153,8 @@
       "plug": { "0": { "unitId": "llm", "pinId": "model" } },
       "type": "string"
     },
-    "key": {
-      "plug": { "0": { "unitId": "llm", "pinId": "key" } },
+    "api_key": {
+      "plug": { "0": { "unitId": "llm", "pinId": "api_key" } },
       "type": "string",
       "optional": true
     }

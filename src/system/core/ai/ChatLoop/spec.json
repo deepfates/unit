@@ -80,8 +80,8 @@
       "plug": { "0": { "unitId": "llmchat", "pinId": "model" } },
       "type": "string"
     },
-    "key": {
-      "plug": { "0": { "unitId": "llmchat", "pinId": "key" } },
+    "api_key": {
+      "plug": { "0": { "unitId": "llmchat", "pinId": "api_key" } },
       "type": "string",
       "optional": true,
       "defaultIgnored": true
